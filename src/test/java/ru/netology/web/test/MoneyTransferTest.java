@@ -1,6 +1,5 @@
 package ru.netology.web.test;
 
-import lombok.Data;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +27,7 @@ public class MoneyTransferTest {
         val initialBalanceToCard = dashboardPage.getFirstCardBalance();
         val initialBalanceFromCard = dashboardPage.getSecondCardBalance();
         val transferPage = dashboardPage.validChoosePay1();
-        transferPage.chechHeadingPopolnenie();
+        transferPage.checkHeadingPopolnenie();
         val amount = 1234;
         transferPage.setCardNumber(DataHelper.getSecondCard(), amount);
         val dashboardPage1 = transferPage.validPayCard();
@@ -51,7 +50,7 @@ public class MoneyTransferTest {
         val initialBalanceFromCard = dashboardPage.getFirstCardBalance();
         val initialBalanceToCard = dashboardPage.getSecondCardBalance();
         val transferPage = dashboardPage.validChoosePay2();
-        transferPage.chechHeadingPopolnenie();
+        transferPage.checkHeadingPopolnenie();
         val amount = 999;
         transferPage.setCardNumber(DataHelper.getFirstCard(), amount);
         val dashboardPage1 = transferPage.validPayCard();
@@ -63,20 +62,20 @@ public class MoneyTransferTest {
         assertEquals(expected2, actual2);
     }
 
-//    @Test
-//    void shouldNotTransferMoneySameCard() {
-//        val loginPage = new LoginPage();
-//        val authInfo = DataHelper.getAuthInfo();
-//        val verificationPage = loginPage.validLogin(authInfo);
-//        val verificationCode = DataHelper.getVerificationCode(authInfo);
-//        val dashboardPage = verificationPage.validVerify(verificationCode);
-//        dashboardPage.checkHeadingCards();
-//        val transferPage = dashboardPage.validChoosePay1();
-//        transferPage.chechHeadingPopolnenie();
-//        val amount = 1000;
-//        transferPage.setCardNumber(DataHelper.getFirstCard(), amount);
-//        transferPage.invalidPaySameCard();
-//    }
+    @Test
+    void shouldNotTransferMoneySameCard() {
+        val loginPage = new LoginPage();
+        val authInfo = DataHelper.getAuthInfo();
+        val verificationPage = loginPage.validLogin(authInfo);
+        val verificationCode = DataHelper.getVerificationCode(authInfo);
+        val dashboardPage = verificationPage.validVerify(verificationCode);
+        dashboardPage.checkHeadingCards();
+        val transferPage = dashboardPage.validChoosePay1();
+        transferPage.checkHeadingPopolnenie();
+        val amount = 1000;
+        transferPage.setCardNumber(DataHelper.getFirstCard(), amount);
+        transferPage.invalidPaySameCard();
+    }
 
     @Test
     void shouldNotTransferInvalidCard() {
@@ -87,28 +86,28 @@ public class MoneyTransferTest {
         val dashboardPage = verificationPage.validVerify(verificationCode);
         dashboardPage.checkHeadingCards();
         val transferPage = dashboardPage.validChoosePay1();
-        transferPage.chechHeadingPopolnenie();
+        transferPage.checkHeadingPopolnenie();
         val amount = 1000;
         transferPage.setCardNumber(DataHelper.getInvalidCard(), amount);
         transferPage.invalidPayNotExistCard();
     }
 
-//    @Test
-//    void shouldNotTransferExtendLimit() {
-//        val loginPage = new LoginPage();
-//        val authInfo = DataHelper.getAuthInfo();
-//        val verificationPage = loginPage.validLogin(authInfo);
-//        val verificationCode = DataHelper.getVerificationCode(authInfo);
-//        val dashboardPage = verificationPage.validVerify(verificationCode);
-//        dashboardPage.checkHeadingCards();
-//        val initialBalanceFromCard = dashboardPage.getSecondCardBalance();
-//        val transferPage = dashboardPage.validChoosePay1();
-//        transferPage.chechHeadingPopolnenie();
-//        val amount = 1 + initialBalanceFromCard;
-//        transferPage.setCardNumber(DataHelper.getSecondCard(), amount);
-//        transferPage.invalidPayExtendAmout();
-//
-//    }
+    @Test
+    void shouldNotTransferExtendLimit() {
+        val loginPage = new LoginPage();
+        val authInfo = DataHelper.getAuthInfo();
+        val verificationPage = loginPage.validLogin(authInfo);
+        val verificationCode = DataHelper.getVerificationCode(authInfo);
+        val dashboardPage = verificationPage.validVerify(verificationCode);
+        dashboardPage.checkHeadingCards();
+        val initialBalanceFromCard = dashboardPage.getSecondCardBalance();
+        val transferPage = dashboardPage.validChoosePay1();
+        transferPage.checkHeadingPopolnenie();
+        val amount = 1 + initialBalanceFromCard;
+        transferPage.setCardNumber(DataHelper.getSecondCard(), amount);
+        transferPage.invalidPayExtendAmout();
+
+    }
 
 
 }

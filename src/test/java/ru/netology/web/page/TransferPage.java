@@ -16,7 +16,7 @@ public class TransferPage {
     private SelenideElement fromCard = $("[data-test-id=from] input");
     private SelenideElement buttonPay = $("[data-test-id=action-transfer]");
 
-    public void chechHeadingPopolnenie(){
+    public void checkHeadingPopolnenie(){
         headingPopolnenie.shouldBe(Condition.visible);
     }
 
