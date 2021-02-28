@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/8rk5mqccscd8n8rh?svg=true)](https://ci.appveyor.com/project/Berengalina/pageobject-homework)
